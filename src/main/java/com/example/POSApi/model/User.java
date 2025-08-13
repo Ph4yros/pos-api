@@ -18,6 +18,9 @@ public class User {
 
     private String fullname;
 
+    @Column(unique = true)
+    private String token; // <-- yeni alan
+
     // Getter ve Setter'lar
 
     public Long getId() {
@@ -50,5 +53,13 @@ public class User {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

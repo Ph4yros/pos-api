@@ -21,7 +21,7 @@ public class AuthController {
         User user = userRepository.findByUsername(request.getUsername());
 
         if (user != null && user.getPassword().equals(request.getPassword())) {
-            return new LoginResponse("success", "Giriş başarılı", "TOKEN-123456");
+            return new LoginResponse("success", "Giriş başarılı", user.getToken());
         } else {
             return new LoginResponse("error", "Kullanıcı adı veya şifre hatalı", null);
         }
