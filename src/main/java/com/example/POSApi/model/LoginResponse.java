@@ -4,11 +4,13 @@ public class LoginResponse {
     private String status;
     private String message;
     private String token;
+    private Long userId;  // eklendi
 
-    public LoginResponse(String status, String message, String token) {
+    public LoginResponse(String status, String message, String token, Long userId) {
         this.status = status;
         this.message = message;
         this.token = token;
+        this.userId = userId;
     }
 
     // Getter & Setter'lar
@@ -34,5 +36,13 @@ public class LoginResponse {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
