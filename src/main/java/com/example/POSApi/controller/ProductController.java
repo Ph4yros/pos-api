@@ -30,4 +30,29 @@ public class ProductController {
                 .findFirst()
                 .orElse(null);
     }
+
+    // -----------------------
+    // Yeni ürün ekle
+    @PostMapping
+    public Product addProduct(@RequestBody Product product) {
+        return repo.save(product);
+    }
+
+    // Ürün güncelle
+    @PutMapping("/{id}")
+    public Product updateProduct(@PathVariable int id, @RequestBody Product product) {
+        return repo.findById((long) id)
+                .map(existing -> {
+                    existing.setName(product.getName());
+                    existing.setBarcode(product.getBarcode());
+                    existing.setPrice(product.getPrice());
+                    existing.setStock(product.getStock());
+                    existing.setPurchasePrice(product.getPurchasePrice());
+                    existing.setUnit(product.getUnit());
+                    existing.setVat(product.getVat());
+                    existing.setUserId(product.getUserId());
+                    return repo.save(existing);
+                })
+                .orElse(null);
+    }
 }

@@ -23,7 +23,7 @@ public class AuthController {
         if (user != null && user.getPassword().equals(request.getPassword())) {
             return new LoginResponse("success", "Giriş başarılı", user.getToken(), user.getId());
         } else {
-            return new LoginResponse("error", "Kullanıcı adı veya şifre hatalı", null,-1L);
+            return new LoginResponse("error", "Kullanıcı adı veya şifre hatalı", null,-1L   );
         }
     }
 }
