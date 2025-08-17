@@ -42,7 +42,7 @@ public class SaleService {
             dto.setDate(sale.getDate());
 
             // CustomerName ekle
-            Customer customer = customerRepository.findById(sale.getCustomer_id()).orElse(null);
+            Customer customer = customerRepository.findById(sale.getCustomerId()).orElse(null);
             dto.setCustomerName(customer != null ? customer.getName() : "Bilinmiyor");
 
             dtoList.add(dto);

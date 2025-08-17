@@ -15,7 +15,7 @@ public class Sale {
     private Long userId;           // Kullanıcıya bağlamak için
 
     @Column(name = "customer_id")
-    private Long customer_id;      // Customer tablosu ile ilişkili
+    private Long customerId;      // Customer tablosu ile ilişkili
 
     @Column(name = "total_amount")
     private double totalAmount;
@@ -36,8 +36,8 @@ public class Sale {
     public Long getUserId() { return userId; }
     public void setUserId(Long userId) { this.userId = userId; }
 
-    public Long getCustomer_id() { return customer_id; }
-    public void setCustomer_id(Long customer_id) { this.customer_id = customer_id; }
+    public Long getCustomerId() { return customerId; }
+    public void setCustomerId(Long customerId) { this.customerId = customerId; }
 
     public double getTotalAmount() { return totalAmount; }
     public void setTotalAmount(double totalAmount) { this.totalAmount = totalAmount; }
