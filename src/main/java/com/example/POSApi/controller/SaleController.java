@@ -1,5 +1,6 @@
 package com.example.POSApi.controller;
 
+import com.example.POSApi.dto.SaleDTO;
 import com.example.POSApi.model.Sale;
 import com.example.POSApi.service.SaleService;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +24,10 @@ public class SaleController {
     }
 
     @GetMapping("/user/{userId}")
-    public List<Sale> getSalesByUser(@PathVariable Long userId) {
+    public List<SaleDTO> getSalesByUser(@PathVariable Long userId) {
         return saleService.getSalesByUserId(userId);
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Sale> getSaleById(@PathVariable Long id) {
