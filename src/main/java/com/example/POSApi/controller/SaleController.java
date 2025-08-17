@@ -1,4 +1,47 @@
 package com.example.POSApi.controller;
 
+import com.example.POSApi.model.Sale;
+import com.example.POSApi.service.SaleService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/sales")
 public class SaleController {
+
+    private final SaleService saleService;
+
+    public SaleController(SaleService saleService) {
+        this.saleService = saleService;
+    }
+
+    @GetMapping
+    public List<Sale> getAllSales() {
+        return saleService.getAllSales();
+    }
+
+    @GetMapping("/user/{userId}")
+    public List<Sale> getSalesByUser(@PathVariable Long userId) {
+        return saleService.getSalesByUserId(userId);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Sale> getSaleById(@PathVariable Long id) {
+        return saleService.getSaleById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public Sale createSale(@RequestBody Sale sale) {
+        return saleService.createSale(sale);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteSale(@PathVariable Long id) {
+        saleService.deleteSale(id);
+        return ResponseEntity.noContent().build();
+    }
 }
