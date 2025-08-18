@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class SaleService {
@@ -51,6 +52,13 @@ public class SaleService {
         return dtoList;
     }
 
+    public List<SaleDTO> getSalesByCustomerId(Long customerId) {
+        List<Sale> sales = saleRepository.findByCustomerId(customerId);
+        return sales.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
     public Optional<Sale> getSaleById(Long id) {
         return saleRepository.findById(id);
     }
@@ -62,4 +70,22 @@ public class SaleService {
     public void deleteSale(Long id) {
         saleRepository.deleteById(id);
     }
+
+    private SaleDTO convertToDTO(Sale sale) {
+        SaleDTO dto = new SaleDTO();
+        dto.setId(sale.getId());
+        dto.setUserId(sale.getUserId());
+        dto.setTotalAmount(sale.getTotalAmount());
+        dto.setPaidAmount(sale.getPaidAmount());
+        dto.setPayment_method(sale.getPayment_method());
+        dto.setDate(sale.getDate());
+
+        // CustomerName ekle
+        Customer customer = customerRepository.findById(sale.getCustomerId()).orElse(null);
+        dto.setCustomerName(customer != null ? customer.getName() : "Bilinmiyor");
+
+        return dto;
+    }
+
+
 }

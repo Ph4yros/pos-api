@@ -36,6 +36,12 @@ public class SaleController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/customer/{customerId}")
+    public List<SaleDTO> getSalesByCustomer(@PathVariable Long customerId) {
+        return saleService.getSalesByCustomerId(customerId);
+    }
+
+
     @PostMapping
     public Sale createSale(@RequestBody Sale sale) {
         return saleService.createSale(sale);
