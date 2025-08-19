@@ -11,6 +11,7 @@ public class SaleDTO {
     private double paidAmount;
     private String payment_method;
     private LocalDateTime date;
+    private double balance;
 
     // Getter - Setter
     public Long getId() { return id; }
@@ -27,6 +28,9 @@ public class SaleDTO {
 
     public double getPaidAmount() { return paidAmount; }
     public void setPaidAmount(double paidAmount) { this.paidAmount = paidAmount; }
+
+    public double getBalance(){return balance;}
+    public void  setBalance(double balance){this.balance = balance;}
 
     public String getPayment_method() { return payment_method; }
     public void setPayment_method(String payment_method) { this.payment_method = payment_method; }

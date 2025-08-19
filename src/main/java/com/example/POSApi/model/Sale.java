@@ -29,6 +29,9 @@ public class Sale {
     @Column(name = "date")
     private LocalDateTime date;    // Veritabanındaki tarih
 
+    @Column(name = "balance")
+    private double balance;
+
     // Getter - Setter
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -44,6 +47,9 @@ public class Sale {
 
     public double getPaidAmount() { return paidAmount; }
     public void setPaidAmount(double paidAmount) { this.paidAmount = paidAmount; }
+
+    public double getBalance(){return balance;}
+    public void  setBalance(double balance){this.balance = balance;}
 
     public String getPayment_method() { return payment_method; }
     public void setPayment_method(String payment_method) { this.payment_method = payment_method; }

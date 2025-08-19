@@ -44,6 +44,7 @@ public class SaleController {
 
     @PostMapping
     public Sale createSale(@RequestBody Sale sale) {
+        sale.setBalance(sale.getTotalAmount() - sale.getPaidAmount());
         return saleService.createSale(sale);
     }
 
