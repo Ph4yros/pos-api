@@ -12,6 +12,7 @@ public class SaleDTO {
     private String payment_method;
     private LocalDateTime date;
     private double balance;
+    private double total_discount;
 
     // Getter - Setter
     public Long getId() { return id; }
@@ -34,6 +35,9 @@ public class SaleDTO {
 
     public String getPayment_method() { return payment_method; }
     public void setPayment_method(String payment_method) { this.payment_method = payment_method; }
+
+    public double getTotal_discount(){return total_discount;}
+    public void setTotal_discount(double total_discount){this.total_discount = total_discount;}
 
     public LocalDateTime getDate() { return date; }
     public void setDate(LocalDateTime date) { this.date = date; }

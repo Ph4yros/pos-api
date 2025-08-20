@@ -42,6 +42,7 @@ public class SaleService {
             dto.setPayment_method(sale.getPayment_method());
             dto.setDate(sale.getDate());
             dto.setBalance((sale.getTotalAmount())-(sale.getPaidAmount()));
+            dto.setTotal_discount(sale.getTotal_discount());
 
             // CustomerName ekle
             Customer customer = customerRepository.findById(sale.getCustomerId()).orElse(null);
@@ -81,6 +82,7 @@ public class SaleService {
         dto.setPayment_method(sale.getPayment_method());
         dto.setDate(sale.getDate());
         dto.setBalance((sale.getTotalAmount())-(sale.getPaidAmount()));
+        dto.setTotal_discount(sale.getTotal_discount());
 
         // CustomerName ekle
         Customer customer = customerRepository.findById(sale.getCustomerId()).orElse(null);
