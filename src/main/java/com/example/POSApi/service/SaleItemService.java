@@ -35,4 +35,19 @@ public class SaleItemService {
     public void deleteSaleItem(Long id) {
         saleItemRepository.deleteById(id);
     }
+
+    // ✅ Update metodu
+    public SaleItem updateSaleItem(Long id, SaleItem updatedItem) {
+        return saleItemRepository.findById(id).map(item -> {
+            item.setSaleId(updatedItem.getSaleId());
+            item.setProductId(updatedItem.getProductId());
+            item.setProductName(updatedItem.getProductName());
+            item.setQuantity(updatedItem.getQuantity());
+            item.setUnitPrice(updatedItem.getUnitPrice());
+            item.setTotalPrice(updatedItem.getTotalPrice());
+            item.setBarcode(updatedItem.getBarcode());
+            item.setDiscount(updatedItem.getDiscount());
+            return saleItemRepository.save(item);
+        }).orElseThrow(() -> new RuntimeException("SaleItem not found with id: " + id));
+    }
 }

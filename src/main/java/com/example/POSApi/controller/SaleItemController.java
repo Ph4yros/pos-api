@@ -44,4 +44,11 @@ public class SaleItemController {
         saleItemService.deleteSaleItem(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<SaleItem> updateSaleItem(
+            @PathVariable Long id,
+            @RequestBody SaleItem saleItem) {
+        return ResponseEntity.ok(saleItemService.updateSaleItem(id, saleItem));
+    }
 }
