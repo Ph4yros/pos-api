@@ -91,5 +91,20 @@ public class SaleService {
         return dto;
     }
 
+    public Sale updateSale(Long id, Sale sale) {
+        return saleRepository.findById(id).map(existingSale -> {
+            existingSale.setTotalAmount(sale.getTotalAmount());
+            existingSale.setPaidAmount(sale.getPaidAmount());
+            existingSale.setBalance(sale.getTotalAmount() - sale.getPaidAmount());
+            existingSale.setPayment_method(sale.getPayment_method());
+            existingSale.setDate(sale.getDate());
+            existingSale.setTotal_discount(sale.getTotal_discount());
+            existingSale.setCustomerId(sale.getCustomerId());
+            return saleRepository.save(existingSale);
+        }).orElseThrow(() -> new RuntimeException("Sale not found with id " + id));
+    }
+
+
+
 
 }

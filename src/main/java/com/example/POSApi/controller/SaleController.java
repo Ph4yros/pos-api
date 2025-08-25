@@ -53,4 +53,17 @@ public class SaleController {
         saleService.deleteSale(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Sale> updateSale(@PathVariable Long id, @RequestBody Sale sale) {
+        sale.setBalance(sale.getTotalAmount() - sale.getPaidAmount());
+
+        try {
+            Sale updatedSale = saleService.updateSale(id, sale);
+            return ResponseEntity.ok(updatedSale);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
