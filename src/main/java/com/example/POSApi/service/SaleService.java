@@ -105,6 +105,12 @@ public class SaleService {
     }
 
 
-
+    public Sale updateSaleTotalAmount(Long id, Double totalAmount) {
+        return saleRepository.findById(id).map(existingSale -> {
+            existingSale.setTotalAmount(totalAmount);
+            existingSale.setBalance(totalAmount - existingSale.getPaidAmount());
+            return saleRepository.save(existingSale);
+        }).orElseThrow(() -> new RuntimeException("Sale not found with id " + id));
+    }
 
 }

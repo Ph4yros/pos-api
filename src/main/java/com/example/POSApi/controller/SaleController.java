@@ -66,4 +66,15 @@ public class SaleController {
         }
     }
 
+    @PatchMapping("/{id}/total")
+    public ResponseEntity<Sale> updateSaleTotal(@PathVariable Long id, @RequestBody Double totalAmount) {
+        try {
+            Sale updatedSale = saleService.updateSaleTotalAmount(id, totalAmount);
+            return ResponseEntity.ok(updatedSale);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 }
