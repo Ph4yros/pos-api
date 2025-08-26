@@ -113,4 +113,12 @@ public class SaleService {
         }).orElseThrow(() -> new RuntimeException("Sale not found with id " + id));
     }
 
+    public Sale updateSalePaidAmount(Long id, Double paidAmount) {
+        return saleRepository.findById(id).map(existingSale -> {
+            existingSale.setPaidAmount(paidAmount);
+            existingSale.setBalance(existingSale.getTotalAmount() - paidAmount);
+            return saleRepository.save(existingSale);
+        }).orElseThrow(() -> new RuntimeException("Sale not found with id " + id));
+    }
+
 }
